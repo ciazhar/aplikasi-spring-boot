@@ -42,7 +42,6 @@ public class Peserta{
   private String email;
 
   @Column(nullable=false,unique=true)
-  @Email
   @NotNull
   @NotEmpty
   private String noHp;
