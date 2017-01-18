@@ -27,4 +27,10 @@ public class PesertaController{
         model.addAttribute("peserta",new Peserta());
         return "/peserta/formPeserta";
     }
+
+    @RequestMapping(value = "/peserta/create", method = RequestMethod.POST)
+    public String prosesForm(Model model, Peserta peserta){
+        model.addAttribute("peserta", pesertaDao.saveOrUpdate(peserta));
+        return "redirect:/peserta";
+    }
 }

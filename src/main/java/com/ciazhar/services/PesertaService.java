@@ -28,4 +28,13 @@ public class PesertaService implements PesertaDao {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.createQuery("from Peserta", Peserta.class).getResultList();
     }
+
+    @Override
+    public Peserta saveOrUpdate(Peserta peserta) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Peserta saved = entityManager.merge(peserta);///merge berfungsi untuk mengecek apakah data udah ada di database, jika belum create, jika sudah update
+        entityManager.getTransaction().commit();
+        return saved;
+    }
 }
