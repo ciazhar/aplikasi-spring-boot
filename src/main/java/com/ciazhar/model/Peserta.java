@@ -1,18 +1,14 @@
 package com.ciazhar.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -45,6 +41,11 @@ public class Peserta{
   @NotNull
   @NotEmpty
   private String noHp;
+
+  @Version
+  @Column(columnDefinition= "integer DEFAULT 0")
+  private Integer version;
+
 
   /*
     Sebenarnya dalam Spring Boot POJO tidak perlu dibuat, tapi ini
@@ -82,4 +83,11 @@ public class Peserta{
     this.noHp = noHp;
   }
 
+  public Integer getVersion() {
+    return version;
+  }
+
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
 }

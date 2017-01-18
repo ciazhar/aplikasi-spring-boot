@@ -29,8 +29,13 @@ public class PesertaController{
     }
 
     @RequestMapping(value = "/peserta/create", method = RequestMethod.POST)
-    public String prosesForm(Model model, Peserta peserta){
+    public String saveForm(Model model, Peserta peserta){
         model.addAttribute("peserta", pesertaDao.saveOrUpdate(peserta));
         return "redirect:/peserta";
+    }
+    @RequestMapping(value = "/peserta/edit/{id}",method = RequestMethod.GET)
+    public String editForm(@PathVariable String id, Model model){
+        model.addAttribute("peserta",pesertaDao.getIdPeserta(id));
+        return "/peserta/formPeserta";
     }
 }

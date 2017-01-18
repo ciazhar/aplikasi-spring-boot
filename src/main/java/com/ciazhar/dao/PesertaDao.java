@@ -10,4 +10,5 @@ import java.util.List;
 public interface PesertaDao{
     List <Peserta> daftarPeserta();
     Peserta saveOrUpdate (Peserta peserta);
+    Peserta getIdPeserta(String id);
 }

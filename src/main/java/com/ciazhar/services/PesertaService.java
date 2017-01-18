@@ -37,4 +37,11 @@ public class PesertaService implements PesertaDao {
         entityManager.getTransaction().commit();
         return saved;
     }
+
+    @Override
+    public Peserta getIdPeserta(String id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.find(Peserta.class,id);
+
+    }
 }
