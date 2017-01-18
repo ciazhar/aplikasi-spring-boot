@@ -11,4 +11,5 @@ public interface PesertaDao{
     List <Peserta> daftarPeserta();
     Peserta saveOrUpdate (Peserta peserta);
     Peserta getIdPeserta(String id);
+    void delete(String id);
 }
