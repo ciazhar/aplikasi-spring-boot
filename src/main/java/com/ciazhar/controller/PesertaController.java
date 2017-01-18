@@ -1,6 +1,7 @@
 package com.ciazhar.controller;
 
 import com.ciazhar.dao.PesertaDao;
+import com.ciazhar.model.Peserta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,12 @@ public class PesertaController{
     @RequestMapping("/peserta")
     public String listPeserta(Model model){
         model.addAttribute("peserta", pesertaDao.daftarPeserta());
-        return "/peserta/peserta";
+        return "/peserta/listPeserta";
+    }
+
+    @RequestMapping(value = "/peserta/create", method = RequestMethod.GET)
+    public String tampilkanForm(Model model){
+        model.addAttribute("peserta",new Peserta());
+        return "/peserta/formPeserta";
     }
 }
