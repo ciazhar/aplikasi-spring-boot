@@ -46,11 +46,6 @@ public class Peserta{
   @Column(columnDefinition= "integer DEFAULT 0")
   private Integer version;
 
-
-  /*
-    Sebenarnya dalam Spring Boot POJO tidak perlu dibuat, tapi ini
-    untuk kebutuhan test
-  */
   public String getId() {
     return id;
   }
