@@ -38,9 +38,9 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter{
         //setting security non database
         auth
                 .inMemoryAuthentication()
-                .withUser("ciazhar")
+                .withUser("admin")
                 .password("123")
-                .roles("apa");
+                .roles("OPERATOR");
 
         ///Setting security database
         /*auth
