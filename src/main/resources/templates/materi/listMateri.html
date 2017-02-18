@@ -3,12 +3,22 @@
     <meta charset="utf-8"/>
     <title>Daftar Materi</title>
   </head>
-  <body ng-app="">
+  <body ng-app="materiapp">
     <h1>Daftar Materi</h1>
-
-    Nama anda : <input type="text" ng-model="nama"/>
-    Selamat datang {{nama}}
+    <div ng-controller="MateriController">
+      Input Materi <input type="text" ng-model="namaMateri"/>
+      <button ng-click="tambahMateri()">Tambahkan</button>
+      <br/>
+      Materi {{namaMateri}} berhasil diinput.
+      <ul>
+        <li ng-repeat="materi in daftarMateri">
+          {{materi}}
+          <button ng-click="hapusMateri(materi)">Hapus</button>
+        </li>
+      </ul>
+    </div>
 
     <script th:src="@{/js/angular.min.js}"></script>
+    <script th:src="@{/js/materi.js}"></script>
   </body>
 </html>

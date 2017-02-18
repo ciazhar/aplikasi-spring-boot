@@ -381,9 +381,10 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
 
   ```
 
-# Generate Content Client Side Menggunakan AngularJS
+# Generate Content pada Client Side Menggunakan AngularJS
   Kita akan coba menggenate content dari materi.
-- Memulai AngularJS (src/main/resources/templates/materi/listMateri.html)
+## Memulai AngularJS ##
+- Membuat file html (src/main/resources/templates/materi/listMateri.html)
   ```
   <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -400,7 +401,8 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
   ```
     registry.addViewController("/materi/list").setViewName("materi/listMateri");
   ```
-- Binding
+
+## Binding ##
   Binding yaitu menggunakan data input untuk di outputkan secara dinamis(tanpa submit/client side). Prosesnya adalah user menginputkan data. Kemudian data itu disimpan ke sebuah variabel. Kemudian variabel itu dioutputkan lagi. Contoh
   ```
   <body ng-app="">
@@ -409,4 +411,52 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
     Selamat datang {{nama}}
     <script th:src="@{/js/angular.min.js}"></script>
   </body>
+  ```
+
+## Menggunakan $scope ##
+$scope digunakan untuk menghubungkan variabel di html dengan javascript.
+### Mencetak data Array ####
+- (src/main/resources/templates/materi/listMateri.html)
+  ```
+  <div ng-controller="MateriController">
+    Input Materi <input type="text" ng-model="namaMateri"/><br/>
+    Materi {{namaMateri}} berhasil diinput.
+    <ul>
+      <li ng-repeat="materi in daftarMateri">{{materi}}</li>
+    </ul>
+  </div>
+
+  <script th:src="@{/js/materi.js}"></script>
+  ```
+- Membuat file JS(/src/main/resources/static/js/materi.js)
+  ```
+  var materiapp = angular.module ('materiapp',[]);
+  materiapp.controller('MateriController', function($scope){
+      $scope.daftarMateri = [
+        'Java Fundamental',
+        'Spring Framework'
+      ];
+  });
+  ```
+### Memasukkan Data ke Array ###
+- (src/main/resources/templates/materi/listMateri.html)
+  ```
+    <button ng-click="tambahMateri()">Tambahkan</button>
+  ```
+- (/src/main/resources/static/js/materi.js)
+  ```
+  $scope.tambahMateri = function(){
+    $scope.daftarMateri.push($scope.namaMateri);
+  }
+  ```
+### Menghapus Data dari Array ###
+- (src/main/resources/templates/materi/listMateri.html)
+  ```
+    <button ng-click="tambahMateri()">Tambahkan</button>
+  ```
+- (/src/main/resources/static/js/materi.js)
+  ```
+  $scope.tambahMateri = function(){
+    $scope.daftarMateri.push($scope.namaMateri);
+  }
   ```
