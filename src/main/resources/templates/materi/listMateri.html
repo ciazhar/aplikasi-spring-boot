@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Daftar Materi</title>
+  </head>
+  <body ng-app="">
+    <h1>Daftar Materi</h1>
+
+    Nama anda : <input type="text" ng-model="nama"/>
+    Selamat datang {{nama}}
+
+    <script th:src="@{/js/angular.min.js}"></script>
+  </body>
+</html>

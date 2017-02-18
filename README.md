@@ -1,16 +1,11 @@
-#APLIKASI PESERTA PELATIHAN
+# APLIKASI PESERTA PELATIHAN
 
-#Setup Development Environment
+# Setup Development Environment
 - JDK 1.8
 - Tomcat Sever
 - MySQL
 
-#Teknologi yang digunakan
-- Spring Boot
-- Spring Data
-- Spring Security
-
-#Setup Project
+# Setup Project
 - Buka browser masukkan url
   ```
     http://start.spring.io/
@@ -24,7 +19,7 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
 - application.properties (konfigurasi database)
 - Application.java (main class)
 
-#Buat Halaman Web Sederhana
+# Buat Halaman Web Sederhana
 - Buat simple controller(main/java/domain/Controllers/HaloController.java)
   ```
     @Controller
@@ -37,8 +32,48 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
     }
   ```
 - Buat File Html(main/resources/templates/index.html)
+  ```
+  <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <title>Aplikasi Spring Boot</title>
+      <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  media="screen"/>
+      <link rel="stylesheet" th:href="@{/css/signin.css}" media="screen"/>
+    </head>
 
-#Memulai CRUD
+    <body>
+
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">ciazhar</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a th:href="@{/peserta}">Daftar Peserta</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+      <div class="container">
+        <h1>Aplikasi Spring Boot Dengan Thymeleaf</h1>
+      </div>
+
+      <script th:src="@{/js/jquery.min.js}"></script>
+      <script th:src="@{/js/bootstrap.min.js}"></script>
+    </body>
+  </html>
+
+  ```
+# Memulai CRUD
 - Tambahkan dependency (pom.xml)
   ```
     <dependency>
@@ -123,7 +158,7 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
       this.version = version;
     }
   ```
-#Setting Database
+# Setting Database
 - Mapping database (main/resources/application.properties)
   ```
     spring.datasource.url=jdbc:mysql://localhost/pelatihan
@@ -143,12 +178,12 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
     show create table peserta \G	///memperlihatkan detil tabel
     drop table peserta;		///redeploy tabel
   ```
-#Test Database
+# Test Database
   ```
     insert into peserta (id, nama, email, tanggal_lahir)
     values ('aa1', 'Peserta Test 001', 'peserta.test.001@gmail.com', '2011-01-01');
   ```
-#Buat tampilan UI Peserta
+# Buat tampilan UI Peserta
 - Bikin Dao (main/java/domain/dao/PesertaDao.java)
   Note :
   Dao ini file yang berupa interface yang akan dimplementasi ke class service
@@ -240,7 +275,7 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
   ```
 - Bikin UI Peserta(main/resources/peserta/listPeserta.html, main/resources/peserta/formPeserta.html)
 
-#Bikin Otorisasi Login
+# Bikin Otorisasi Login
 - Tambahkan dependency (pom.xml)
   ```
     <dependency>
@@ -303,3 +338,75 @@ Pada Project tersebut terdapat 3 buah file utama yaitu :
     }
   ```
 - Bikin UI Login(main/resources/login.html)
+  ```
+  <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+      <title>Log In</title>
+
+      <!-- Bootstrap core CSS -->
+
+      <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+      <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet" />
+      <link th:href="@{/css/signin.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+
+      <div class="container">
+
+        <form name="f" class="form-signin"  th:action="@{/login}" method="post">
+          <div th:if="${param.error}" class="alert alert-error">
+            Invalid username and password.
+          </div>
+
+          <div th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+          </div>
+
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" name="username" id="username" class="form-control" placeholder="Username" required="true" autofocus="true" />
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="true" />
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+      </div>
+
+      <script th:src="@{/js/jquery.min.js}"></script>
+      <script th:src="@{/js/bootstrap.min.js}"></script>
+    </body>
+  </html>
+
+  ```
+
+# Generate Content Client Side Menggunakan AngularJS
+  Kita akan coba menggenate content dari materi.
+- Memulai AngularJS (src/main/resources/templates/materi/listMateri.html)
+  ```
+  <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <title>Daftar Materi</title>
+    </head>
+    <body ng-app="">
+      <h1>Daftar Materi</h1>
+      <script th:src="@{/js/angular.min.js}"></script>
+    </body>
+  </html>
+  ```
+- Register view(src/main/java/domain/config/KonfigurasiWeb)
+  ```
+    registry.addViewController("/materi/list").setViewName("materi/listMateri");
+  ```
+- Binding
+  Binding yaitu menggunakan data input untuk di outputkan secara dinamis(tanpa submit/client side). Prosesnya adalah user menginputkan data. Kemudian data itu disimpan ke sebuah variabel. Kemudian variabel itu dioutputkan lagi. Contoh
+  ```
+  <body ng-app="">
+
+    Nama anda : <input type="text" ng-model="nama"/>
+    Selamat datang {{nama}}
+    <script th:src="@{/js/angular.min.js}"></script>
+  </body>
+  ```
