@@ -38,7 +38,7 @@ public class PesertaPagingController {
       @RequestMapping(value = "/api/peserta/", method = RequestMethod.POST)
       @ResponseStatus(HttpStatus.CREATED)
       public void simpanPeserta(@RequestBody @Valid PesertaPaging p){
-          // simpan ke db
+           pesertaPagingDao.save(p);
       }
 
       @RequestMapping("/api/peserta/{id}/")
@@ -53,7 +53,7 @@ public class PesertaPagingController {
         data.put("daftarPeserta", pesertaPagingDao.findAll(page));
         return data;
     }
-    @RequestMapping(value="/peserta/form/", method = RequestMethod.GET)
+    @RequestMapping(value="/peserta/form", method = RequestMethod.GET)
     public ModelMap tampilkanForm(@RequestParam(required = false, name = "id") PesertaPaging p){
         ModelMap data = new ModelMap();
 
@@ -65,12 +65,12 @@ public class PesertaPagingController {
 
         return data;
     }
-    @RequestMapping(value = "/peserta/form/", method = RequestMethod.POST)
+    @RequestMapping(value = "/peserta/form", method = RequestMethod.POST)
     public String prosesForm(@ModelAttribute @Valid PesertaPaging p, BindingResult errors, SessionStatus status){
         if(errors.hasErrors()) {
             return "/peserta/form";
         }
-
+        pesertaPagingDao.save(p);
         status.setComplete();
         return "redirect:/peserta/list/";
     }
