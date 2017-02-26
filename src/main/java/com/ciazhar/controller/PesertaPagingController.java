@@ -47,4 +47,9 @@ public class PesertaPagingController {
         pesertaPagingDao.save(p);
         return "redirect:list";
     }
+    @RequestMapping(value = "/hapus")
+    public String hapusPeserta(@RequestParam(name = "id")String id,ModelMap modelMap){
+        pesertaPagingDao.delete(id);
+        return "redirect:list";
+    }
 }
