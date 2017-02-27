@@ -6,6 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 /**
  * Created by ciazhar on 2/26/17.
  */
-public interface PesertaPagingDao extends PagingAndSortingRepository<PesertaPaging,String>{
+
+public interface PesertaPagingDao extends PagingAndSortingRepository<PesertaPaging, String>{
 
 }
