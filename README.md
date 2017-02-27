@@ -460,3 +460,9 @@ $scope digunakan untuk menghubungkan variabel di html dengan javascript.
     $scope.daftarMateri.push($scope.namaMateri);
   }
   ```
+-
+insert into materi (id, kode, nama)
+    values ('aa1', 'Java-001', 'Java Fundamental');
+
+insert into materi (id, kode, nama)
+    values ('aa2', 'Java-002', 'Spring Framework');
