@@ -5,6 +5,7 @@
   </head>
   <body ng-app="materiapp">
     <h1>Daftar Materi</h1>
+
     <div ng-controller="MateriController">
       Input Materi <input type="text" ng-model="namaMateri"/>
       <button ng-click="tambahMateri()">Tambahkan</button>
@@ -16,6 +17,23 @@
           <button ng-click="hapusMateri(materi)">Hapus</button>
         </li>
       </ul>
+    </div>
+
+    <div ng-controller="GenerateMateriController">
+      <table border="1">
+        <thead>
+          <tr>
+            <td>Kode</td>
+            <td>Nama</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat= "materi in daftarMateri.content">
+            <td>{{materi.kode}}</td>
+            <td>{{materi.nama}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script th:src="@{/js/angular.min.js}"></script>
