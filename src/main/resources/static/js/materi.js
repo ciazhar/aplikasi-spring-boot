@@ -21,15 +21,26 @@ materiapp.controller('MateriController', function($scope){
 materiapp.controller('GenerateMateriController', function($http, $scope){
   $scope.daftarMateri = {};
 
+  $scope.simpanMateri = function(){
+    $http.post('/api/materi', $scope.materi).then(sukses,gagal);
+    function sukses(response){
+       $scope.listMateri();
+    }
+    function gagal(response){
+       console.log(response);
+       alert('Error : '+response);
+     };
+  };
+
   $scope.hapusMateri = function(materi){
-       $http.delete('/api/materi/'+materi.id).then(sukses, gagal);
-       function sukses(response){
-           $scope.listMateri();
-       }
-       function gagal(response){
-           console.log(response);
-           alert('Error : '+response);
-       };
+    $http.delete('/api/materi/'+materi.id).then(sukses, gagal);
+    function sukses(response){
+       $scope.listMateri();
+    }
+    function gagal(response){
+       console.log(response);
+       alert('Error : '+response);
+    };
    };
 
   $scope.listMateri = function(){

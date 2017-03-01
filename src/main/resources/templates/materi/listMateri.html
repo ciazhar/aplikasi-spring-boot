@@ -35,8 +35,22 @@
           </tr>
         </tbody>
       </table>
-    </div>
 
+      <table border="1">
+        <tr>
+          <td>Kode</td>
+          <td><input type="text" ng-model="materi.kode" required="true"/></td>
+        </tr>
+        <tr>
+          <td>Nama</td>
+          <td><input type="text" ng-model="materi.nama" required="true"/></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><button ng-click="simpanMateri()">Simpan</button></td>
+        </tr>
+      </table>
+    </div>
     <script th:src="@{/js/angular.min.js}"></script>
     <script th:src="@{/js/materi.js}"></script>
   </body>
