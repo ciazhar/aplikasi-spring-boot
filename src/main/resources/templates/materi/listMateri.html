@@ -31,6 +31,7 @@
           <tr ng-repeat= "materi in daftarMateri.content">
             <td>{{materi.kode}}</td>
             <td>{{materi.nama}}</td>
+            <td><button ng-click="hapusMateri(materi)">hapus</button></td>
           </tr>
         </tbody>
       </table>

@@ -21,12 +21,22 @@ materiapp.controller('MateriController', function($scope){
 materiapp.controller('GenerateMateriController', function($http, $scope){
   $scope.daftarMateri = {};
 
+  $scope.hapusMateri = function(materi){
+       $http.delete('/api/materi/'+materi.id).then(sukses, gagal);
+       function sukses(response){
+           $scope.listMateri();
+       }
+       function gagal(response){
+           console.log(response);
+           alert('Error : '+response);
+       };
+   };
+
   $scope.listMateri = function(){
     $http.get('/api/materi').then(sukses,gagal);
 
     function sukses(response){
       $scope.daftarMateri = response.data;
-      console.log($scope.daftarMateri);
     };
 
     function gagal(response){
