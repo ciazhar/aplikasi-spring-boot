@@ -1,4 +1,4 @@
-package com.ciazhar.model;
+package com.ciazhar.controller;
 
 import com.ciazhar.dao.MateriDao;
 import com.ciazhar.model.Materi;
